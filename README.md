@@ -4,7 +4,7 @@ Configure Logical Volumes Management (lvm), group and volumes.
 
 |GitHub|GitLab|Quality|Downloads|Version|
 |------|------|-------|---------|-------|
-|[![github](https://github.com/robertdebock/ansible-role-lvm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-lvm/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-lvm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-lvm)|[![quality](https://img.shields.io/ansible/quality/)](https://galaxy.ansible.com/robertdebock/lvm)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/robertdebock/lvm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-lvm.svg)](https://github.com/robertdebock/ansible-role-lvm/releases/)|
+|[![github](https://github.com/robertdebock/ansible-role-lvm/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-lvm/actions)|[![gitlab](https://gitlab.com/robertdebock/ansible-role-lvm/badges/master/pipeline.svg)](https://gitlab.com/robertdebock/ansible-role-lvm)|[![quality](https://img.shields.io/ansible/quality/52783)](https://galaxy.ansible.com/robertdebock/lvm)|[![downloads](https://img.shields.io/ansible/role/d/52783)](https://galaxy.ansible.com/robertdebock/lvm)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-lvm.svg)](https://github.com/robertdebock/ansible-role-lvm/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,6 +18,17 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.lvm
+      lvm_logical_groups:
+        - name: first
+          pvs:
+            - /dev/loop0
+
+      lvm_logical_volumes:
+        - name: first
+          vg: first
+          size: 100%FREE
+          opts:
+            - --type cache-pool
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
@@ -30,6 +41,23 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
 
   roles:
     - role: robertdebock.bootstrap
+
+  tasks:
+    - name: create disk.img
+      command: dd if=/dev/zero of=/disk.img bs=1M count=100
+      args:
+        creates: /disk.img
+
+    - name: create /dev/loop0
+      command: mknod /dev/loop0 b 7 8
+      args:
+        creates: /dev/loop0
+      notify:
+        - link disk.img to /dev/loop0
+
+  handlers:
+    - name: link disk.img to /dev/loop0
+      command: losetup /dev/loop0 /disk.img
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

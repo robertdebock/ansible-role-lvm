@@ -6,3 +6,14 @@
 
   roles:
     - role: ansible-role-lvm
+      lvm_logical_groups:
+        - name: first
+          pvs:
+            - /dev/loop0
+
+      lvm_logical_volumes:
+        - name: first
+          vg: first
+          size: 100%FREE
+          opts:
+            - --type cache-pool
