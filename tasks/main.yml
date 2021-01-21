@@ -27,7 +27,7 @@
     lv: "{{ item.name }}"
     vg: "{{ item.vg }}"
     size: "{{ item.size }}"
-    opts: "{{ item.opts | join(', ') | default(omit) }}"
+    opts: "{{ item.opts | default(omit) }}"
   loop: "{{ lvm_logical_volumes }}"
   loop_control:
     label: "{{ item.name }}"

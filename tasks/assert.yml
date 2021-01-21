@@ -67,7 +67,7 @@
 - name: test if item.opts in lvm_logical_volumes is set correctly
   assert:
     that:
-      - item.opts is iterable
+      - item.opts is string
     quiet: yes
   loop: "{{ lvm_logical_volumes }}"
   loop_control:

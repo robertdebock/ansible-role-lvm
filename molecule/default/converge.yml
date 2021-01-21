@@ -16,5 +16,4 @@
       #   - name: first
       #     vg: first
       #     size: 100%FREE
-      #     opts:
-      #       - --type cache-pool
+      #     opts: --type cache-pool

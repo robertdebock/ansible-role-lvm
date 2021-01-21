@@ -23,5 +23,4 @@ lvm_default_pesize: 32
 #   - name: first
 #     vg: first
 #     size: 512
-#     opts:
-#       - --type cache-pool
+#     opts: --type cache-pool
