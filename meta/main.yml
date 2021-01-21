@@ -11,9 +11,6 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: Amazon
-      versions:
-        - all
     - name: Debian
       versions:
         - all
@@ -22,9 +19,6 @@ galaxy_info:
         - 7
         - 8
     - name: Fedora
-      versions:
-        - all
-    - name: OpenSUSE
       versions:
         - all
     - name: Ubuntu
