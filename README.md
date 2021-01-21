@@ -18,7 +18,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
 
   roles:
     - role: robertdebock.lvm
-      lvm_logical_groups:
+      lvm_volume_groups:
         - name: first
           pvs:
             - /dev/loop0
