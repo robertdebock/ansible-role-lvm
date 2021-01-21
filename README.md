@@ -23,12 +23,13 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           pvs:
             - /dev/loop0
 
-      lvm_logical_volumes:
-        - name: first
-          vg: first
-          size: 100%FREE
-          opts:
-            - --type cache-pool
+      # There is no device mapper in containers.
+      # lvm_logical_volumes:
+      #   - name: first
+      #     vg: first
+      #     size: 100%FREE
+      #     opts:
+      #       - --type cache-pool
 ```
 
 The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
