@@ -1,13 +1,13 @@
 ---
 
 - name: test if lvm_default_pesize is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - lvm_default_pesize is defined
     quiet: yes
 
 - name: test if lvm_volume_groups is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - lvm_volume_groups is iterable
     quiet: yes
@@ -15,7 +15,7 @@
     - lvm_volume_groups is defined
 
 - name: test if mandatory item in lvm_volume_groups is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -29,7 +29,7 @@
     - lvm_volume_groups is defined
 
 - name: test if item.pesize in lvm_volume_groups is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.pesize is string or item.pesize is number
     quiet: yes
@@ -41,7 +41,7 @@
     - item.pesize is defined
 
 - name: test if lvm_logical_volumes is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - lvm_logical_volumes is iterable
     quiet: yes
@@ -49,7 +49,7 @@
     - lvm_logical_volumes is defined
 
 - name: test if mandatory item in lvm_logical_volumes is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.name is defined
       - item.name is string
@@ -65,7 +65,7 @@
     - lvm_logical_volumes is defined
 
 - name: test if item.opts in lvm_logical_volumes is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - item.opts is string
     quiet: yes
