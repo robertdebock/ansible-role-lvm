@@ -8,7 +8,7 @@ Configure Logical Volumes Management (lvm), group and volumes.
 
 ## [Example Playbook](#example-playbook)
 
-This example is taken from `molecule/resources/converge.yml` and is tested on each push, pull request and release.
+This example is taken from `molecule/default/converge.yml` and is tested on each push, pull request and release.
 ```yaml
 ---
 - name: converge
@@ -31,7 +31,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
       #     opts: --type cache-pool
 ```
 
-The machine needs to be prepared in CI this is done using `molecule/resources/prepare.yml`:
+The machine needs to be prepared in CI this is done using `molecule/default/prepare.yml`:
 ```yaml
 ---
 - name: prepare
