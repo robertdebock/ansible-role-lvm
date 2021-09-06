@@ -6,10 +6,11 @@
 
   roles:
     - role: ansible-role-lvm
-      lvm_volume_groups:
-        - name: first
-          pvs:
-            - /dev/loop0
+      # It's difficult to test this in CI.
+      # lvm_volume_groups:
+      #   - name: first
+      #     pvs:
+      #       - /dev/loop0
 
       # There is no device mapper in containers.
       # lvm_logical_volumes:

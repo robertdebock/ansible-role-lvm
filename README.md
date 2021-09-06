@@ -18,10 +18,11 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: robertdebock.lvm
-      lvm_volume_groups:
-        - name: first
-          pvs:
-            - /dev/loop0
+      # It's difficult to test this in CI.
+      # lvm_volume_groups:
+      #   - name: first
+      #     pvs:
+      #       - /dev/loop0
 
       # There is no device mapper in containers.
       # lvm_logical_volumes:
@@ -42,22 +43,22 @@ The machine needs to be prepared in CI this is done using `molecule/default/prep
   roles:
     - role: robertdebock.bootstrap
 
-  tasks:
-    - name: create disk.img
-      command: dd if=/dev/zero of=/disk.img bs=1M count=100
-      args:
-        creates: /disk.img
+  # tasks:
+  #   - name: create disk.img
+  #     command: dd if=/dev/zero of=/disk.img bs=1M count=100
+  #     args:
+  #       creates: /disk.img
 
-    - name: create /dev/loop0
-      command: mknod /dev/loop0 b 7 8
-      args:
-        creates: /dev/loop0
-      notify:
-        - link disk.img to /dev/loop0
+  #   - name: create /dev/loop0
+  #     command: mknod /dev/loop0 b 7 8
+  #     args:
+  #       creates: /dev/loop0
+  #     notify:
+  #       - link disk.img to /dev/loop0
 
-  handlers:
-    - name: link disk.img to /dev/loop0
-      command: losetup /dev/loop0 /disk.img
+  # handlers:
+  #   - name: link disk.img to /dev/loop0
+  #     command: losetup /dev/loop0 /disk.img
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
