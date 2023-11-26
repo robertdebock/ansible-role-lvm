@@ -1,4 +1,4 @@
-# Ansible role [lvm](#lvm)
+# [Ansible role lvm](#lvm)
 
 Configure Logical Volumes Management (lvm), group and volumes.
 
