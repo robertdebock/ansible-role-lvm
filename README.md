@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   roles:
-    - role: ansible-role-lvm
+    - role: robertdebock.lvm
       # It's difficult to test this in CI.
       # lvm_volume_groups:
       #   - name: first
